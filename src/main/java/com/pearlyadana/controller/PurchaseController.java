@@ -1,46 +1,3 @@
-//package com.pearlyadana.controller;
-//
-//import com.pearlyadana.dao.ProductDao;
-//import com.pearlyadana.dao.PurchaseDao;
-//import com.pearlyadana.model.Product;
-//import com.pearlyadana.model.Purchase;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.*;
-//
-//import java.util.List;
-//
-//@Controller
-//@RequestMapping("/purchase")
-//public class PurchaseController {
-//
-//    @Autowired
-//    private PurchaseDao purchaseDao;
-//
-//    @Autowired
-//    private ProductDao productDao;
-//
-//    @GetMapping("/form")
-//    public String showForm(Model model) {
-//        model.addAttribute("purchase", new Purchase());
-//        model.addAttribute("products", productDao.getAll());
-//        return "purchase-form";
-//    }
-//
-//    @PostMapping("/save")
-//    public String save(@ModelAttribute("purchase") Purchase purchase) {
-//        purchaseDao.save(purchase);
-//        return "redirect:/purchase/list";
-//    }
-//
-//    @GetMapping("/list")
-//    public String list(Model model) {
-//        model.addAttribute("purchases", purchaseDao.getAll());
-//        return "purchase-list";
-//    }
-//}
-
 package com.pearlyadana.controller;
 
 import com.pearlyadana.dao.ProductDao;
@@ -68,7 +25,7 @@ public class PurchaseController {
     @Autowired
     private ProductDao productDao;
 
-    // ✅ Fix for LocalDate binding
+    // ✅ Handle LocalDate binding
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {
@@ -79,27 +36,38 @@ public class PurchaseController {
         });
     }
 
+    // ✅ Show list
     @GetMapping("/list")
     public String list(Model model) {
-        List<Purchase> purchases = purchaseDao.getAll();
-        List<Product> products = productDao.getAll();
-        model.addAttribute("purchases", purchases);
-        model.addAttribute("products", products);
+        model.addAttribute("purchases", purchaseDao.getAll());
+        model.addAttribute("products", productDao.getAll());
         return "purchase-list";
     }
 
+    // ✅ Show empty form for new
     @GetMapping("/form")
-    public String showForm(Model model) {
-        List<Product> products = productDao.getAll();
-        model.addAttribute("products", products);
-        model.addAttribute("purchase", new Purchase());
+    public String showForm(@RequestParam(value = "id", required = false) Integer id, Model model) {
+        Purchase purchase = (id != null) ? purchaseDao.getById(id) : new Purchase();
+        model.addAttribute("purchase", purchase);
+        model.addAttribute("products", productDao.getAll());
         return "purchase-form";
     }
 
     @PostMapping("/save")
     public String save(@ModelAttribute Purchase purchase) {
-        purchaseDao.save(purchase);
+        if (purchase.getId() == 0) {
+            purchaseDao.save(purchase);
+        } else {
+            purchaseDao.update(purchase); // ✅ update instead of insert
+        }
+        return "redirect:/purchase/list";
+    }
+
+
+    // ✅ Delete purchase
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") int id) {
+        purchaseDao.delete(id); // 🗑 Implemented in DAO
         return "redirect:/purchase/list";
     }
 }
-

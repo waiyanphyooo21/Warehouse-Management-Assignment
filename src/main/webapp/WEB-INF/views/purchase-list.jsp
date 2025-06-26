@@ -62,6 +62,20 @@
         tr:hover {
             background-color: #f1f1f1;
         }
+
+        .action-link {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .action-link.delete {
+            color: #dc3545;
+        }
+
+        .action-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -81,6 +95,7 @@
         <th>Product</th>
         <th>Qty</th>
         <th>Price</th>
+        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -97,6 +112,11 @@
             </td>
             <td>${purchase.qty}</td>
             <td>${purchase.price}</td>
+            <td>
+                <a href="form?id=${purchase.id}" class="action-link">Edit</a>
+                <a href="delete?id=${purchase.id}" class="action-link delete"
+                   onclick="return confirm('Are you sure you want to delete this purchase?');">Delete</a>
+            </td>
         </tr>
     </c:forEach>
     </tbody>
