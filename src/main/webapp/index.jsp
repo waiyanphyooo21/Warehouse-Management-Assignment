@@ -54,7 +54,7 @@
 <body>
 <div class="container">
   <h2>Welcome to Warehouse Management</h2>
-  <a href="product/list">Go to Product List</a>
+<%--  <a href="product/list">Go to Product List</a>--%>
   <p><a href="category/list">Manage Categories</a></p>
   <p><a href="product/list">Manage Products</a></p>
   <p><a href="purchase/list">Manage Purchases</a></p>
