@@ -114,7 +114,7 @@
 <h2>Product List</h2>
 
 <div class="button-bar">
-    <a href="form" class="button">+ Add New Product</a>
+    <a href="form" class="button">Add New Product</a>
     <a href="<c:url value='/' />" class="back-btn">Back to Home</a>
 </div>
 

@@ -3,39 +3,78 @@
 <head>
   <title>Sales List</title>
   <style>
-    body { font-family: Arial; padding: 30px; background: #f9f9f9; }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      background: white;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    body {
+      font-family: Arial;
+      background-color: #f4f4f4;
+      padding: 30px;
     }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: left;
-    }
-    th {
-      background: #007BFF;
-      color: white;
-    }
-    a.button {
-      display: inline-block;
-      padding: 10px 15px;
+
+    h2 {
       margin-bottom: 20px;
-      background: #28a745;
+      color: #333;
+    }
+
+    .button-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .button, .back-btn {
+      padding: 10px 16px;
       color: white;
       text-decoration: none;
       border-radius: 5px;
+      font-weight: bold;
     }
-    a.button:hover {
-      opacity: 0.9;
+
+    .button {
+      background-color: #28a745;
+    }
+
+    .button:hover {
+      background-color: #218838;
+    }
+
+    .back-btn {
+      background-color: #6c757d;
+    }
+
+    .back-btn:hover {
+      background-color: #5a6268;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #007BFF;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
     }
   </style>
 </head>
 <body>
+
 <h2>Sales List</h2>
-<a href="form" class="button">+ Add Sale</a>
+
+<div class="button-bar">
+  <a href="form" class="button">Add Sale</a>
+  <a href="<c:url value='/' />" class="back-btn">Back to Home</a>
+</div>
+
 <table>
   <thead>
   <tr>
@@ -60,5 +99,6 @@
   </c:forEach>
   </tbody>
 </table>
+
 </body>
 </html>
