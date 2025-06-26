@@ -37,9 +37,30 @@ public class SaleController {
         return "sale-form";
     }
 
-    @PostMapping("/save")
-    public String save(@ModelAttribute Sale sale) {
-        saleDao.save(sale);
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable int id, Model model) {
+        Sale sale = saleDao.getById(id);
+        model.addAttribute("sale", sale);
+        model.addAttribute("products", productDao.getAll());
+        return "sale-form";
+    }
+
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable int id) {
+        saleDao.delete(id);
         return "redirect:/sale/list";
     }
+
+
+    @PostMapping("/save")
+    public String save(@ModelAttribute Sale sale) {
+        if (sale.getId() > 0) {
+            saleDao.update(sale);
+        } else {
+            saleDao.save(sale);
+        }
+        return "redirect:/sale/list";
+    }
+
 }

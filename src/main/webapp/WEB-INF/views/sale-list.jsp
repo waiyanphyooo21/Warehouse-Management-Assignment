@@ -64,6 +64,20 @@
     tr:hover {
       background-color: #f1f1f1;
     }
+
+    .action-link {
+      color: #007bff;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+
+    .action-link.delete {
+      color: #dc3545;
+    }
+
+    .action-link:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -82,6 +96,7 @@
     <th>Product</th>
     <th>Qty</th>
     <th>Sale Price</th>
+    <th>Actions</th>
   </tr>
   </thead>
   <tbody>
@@ -95,6 +110,11 @@
       </td>
       <td>${s.qty}</td>
       <td>${s.salePrice}</td>
+      <td>
+        <a href="edit/${s.id}" style="color: green; text-decoration: none; margin-right: 10px;">Edit</a>
+        <a href="delete/${s.id}" style="color: red; text-decoration: none;" onclick="return confirm('Are you sure?')">Delete</a>
+      </td>
+
     </tr>
   </c:forEach>
   </tbody>

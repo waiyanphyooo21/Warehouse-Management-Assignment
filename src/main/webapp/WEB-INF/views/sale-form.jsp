@@ -73,22 +73,33 @@
 </head>
 <body>
 <div class="container">
-  <form action="save" method="post">
-    <h2 style="text-align:center;">New Sale</h2>
+  <form action="<c:url value='/sale/save' />" method="post">
+  <h2 style="text-align:center;">
+      <c:choose>
+        <c:when test="${sale.id > 0}">Edit Sale</c:when>
+        <c:otherwise>New Sale</c:otherwise>
+      </c:choose>
+    </h2>
+
+    <!-- Hidden ID for edit -->
+    <input type="hidden" name="id" value="${sale.id}" />
 
     <label for="productId">Product:</label>
     <select name="productId" id="productId" required>
       <option value="">-- Select Product --</option>
       <c:forEach var="product" items="${products}">
-        <option value="${product.id}">${product.name}</option>
+        <option value="${product.id}"
+                <c:if test="${product.id == sale.productId}">selected</c:if>>
+            ${product.name}
+        </option>
       </c:forEach>
     </select>
 
     <label for="qty">Quantity:</label>
-    <input type="number" name="qty" id="qty" required min="1" />
+    <input type="number" name="qty" id="qty" required min="1" value="${sale.qty}" />
 
     <label for="salePrice">Sale Price:</label>
-    <input type="number" name="salePrice" id="salePrice" step="0.01" required />
+    <input type="number" name="salePrice" id="salePrice" step="0.01" required value="${sale.salePrice}" />
 
     <div class="buttons">
       <input type="submit" value="Save" />
