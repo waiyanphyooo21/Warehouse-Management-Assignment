@@ -5,7 +5,9 @@ import java.util.List;
 
 public interface CategoryDao {
     Category getById(int id);
-    Category getByName(String name); // ✅ Add this
+    Category getByName(String name);
     List<Category> getAll();
-    int save(Category category);     // ✅ Needed to return new ID
+    int save(Category category);
+    void update(Category category);   // ✅ Added for edit
+    void delete(int id);              // ✅ Added for delete
 }

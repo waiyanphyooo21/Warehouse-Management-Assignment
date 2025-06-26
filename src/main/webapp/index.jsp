@@ -8,6 +8,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%--<% response.sendRedirect("product/list"); %>--%>
 
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+
 <html>
 <head>
   <title>Warehouse App</title>
@@ -32,21 +34,24 @@
     }
 
     h2 {
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       color: #333;
     }
 
-    a {
+    .btn {
       display: inline-block;
-      padding: 12px 20px;
+      padding: 12px 0;
       background-color: #007BFF;
       color: white;
       text-decoration: none;
       border-radius: 6px;
       font-weight: bold;
+      width: 200px;
+      text-align: center;
+      margin: 8px 0;
     }
 
-    a:hover {
+    .btn:hover {
       background-color: #0056b3;
     }
   </style>
@@ -54,14 +59,15 @@
 <body>
 <div class="container">
   <h2>Welcome to Warehouse Management</h2>
-<%--  <a href="product/list">Go to Product List</a>--%>
-  <p><a href="category/list">Manage Categories</a></p>
-  <p><a href="product/list">Manage Products</a></p>
-  <p><a href="purchase/list">Manage Purchases</a></p>
-  <p><a href="sale/list">Manage Sales</a></p>
+
+  <a class="btn" href="category/list">Manage Categories</a><br>
+  <a class="btn" href="product/list">Manage Products</a><br>
+  <a class="btn" href="purchase/list">Manage Purchases</a><br>
+  <a class="btn" href="sale/list">Manage Sales</a><br>
 
 </div>
 </body>
 </html>
+
 
 

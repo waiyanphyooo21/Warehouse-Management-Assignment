@@ -93,4 +93,29 @@ public class CategoryDaoImpl implements CategoryDao {
         }
         return 0;
     }
+
+    @Override
+    public void update(Category category) {
+        String sql = "UPDATE category SET name = ? WHERE id = ?";
+        try (Connection con = getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, category.getName());
+            ps.setInt(2, category.getId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void delete(int id) {
+        String sql = "DELETE FROM category WHERE id = ?";
+        try (Connection con = getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

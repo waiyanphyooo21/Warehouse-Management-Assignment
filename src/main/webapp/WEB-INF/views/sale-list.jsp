@@ -47,4 +47,18 @@
   </thead>
   <tbody>
   <c:forEach var="s" items="${sales}">
-  <tr>
+    <tr>
+      <td>${s.id}</td>
+      <td>
+        <c:forEach var="p" items="${products}">
+          <c:if test="${p.id == s.productId}">${p.name}</c:if>
+        </c:forEach>
+      </td>
+      <td>${s.qty}</td>
+      <td>${s.salePrice}</td>
+    </tr>
+  </c:forEach>
+  </tbody>
+</table>
+</body>
+</html>

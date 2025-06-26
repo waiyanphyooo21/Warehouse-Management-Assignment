@@ -32,23 +32,39 @@
             border: 1px solid #ccc;
         }
 
-        input[type="submit"], a.back {
-            display: inline-block;
-            padding: 10px 15px;
+        .button-group {
+            display: flex;
+            justify-content: space-between;
             margin-top: 20px;
+        }
+
+        input[type="submit"],
+        a.back {
+            width: 48%;
+            text-align: center;
+            padding: 10px 0;
             border-radius: 5px;
             text-decoration: none;
-            color: white;
+            font-weight: bold;
         }
 
         input[type="submit"] {
             background-color: #28a745;
+            color: white;
             border: none;
         }
 
         a.back {
             background-color: #6c757d;
-            margin-left: 10px;
+            color: white;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        a.back:hover {
+            background-color: #5a6268;
         }
     </style>
 </head>
@@ -59,8 +75,11 @@
         <input type="hidden" name="id" value="${category.id}" />
         <label for="name">Category Name:</label>
         <input type="text" id="name" name="name" value="${category.name}" required />
-        <input type="submit" value="Save" />
-        <a href="list" class="back">Cancel</a>
+
+        <div class="button-group">
+            <input type="submit" value="Save" />
+            <a href="list" class="back">Cancel</a>
+        </div>
     </form>
 </div>
 </body>
