@@ -96,7 +96,7 @@ public class CategoryController {
         if (id == 0) {
             categoryDao.save(category);
         } else {
-            categoryDao.update(category);  // 🔄 update method to be implemented
+            categoryDao.update(category);
         }
 
         return "redirect:/category/list";
@@ -104,7 +104,7 @@ public class CategoryController {
 
     @GetMapping("/delete")
     public String delete(@RequestParam("id") int id) {
-        categoryDao.delete(id);  // ❌ delete method to be implemented
+        categoryDao.delete(id);
         return "redirect:/category/list";
     }
 }

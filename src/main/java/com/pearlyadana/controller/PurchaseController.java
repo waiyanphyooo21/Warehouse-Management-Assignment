@@ -25,7 +25,7 @@ public class PurchaseController {
     @Autowired
     private ProductDao productDao;
 
-    // ✅ Handle LocalDate binding
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {
@@ -36,7 +36,7 @@ public class PurchaseController {
         });
     }
 
-    // ✅ Show list
+
     @GetMapping("/list")
     public String list(Model model) {
         model.addAttribute("purchases", purchaseDao.getAll());
@@ -44,7 +44,7 @@ public class PurchaseController {
         return "purchase-list";
     }
 
-    // ✅ Show empty form for new
+
     @GetMapping("/form")
     public String showForm(@RequestParam(value = "id", required = false) Integer id, Model model) {
         Purchase purchase = (id != null) ? purchaseDao.getById(id) : new Purchase();
@@ -58,13 +58,13 @@ public class PurchaseController {
         if (purchase.getId() == 0) {
             purchaseDao.save(purchase);
         } else {
-            purchaseDao.update(purchase); // ✅ update instead of insert
+            purchaseDao.update(purchase);
         }
         return "redirect:/purchase/list";
     }
 
 
-    // ✅ Delete purchase
+
     @GetMapping("/delete")
     public String delete(@RequestParam("id") int id) {
         purchaseDao.delete(id); // 🗑 Implemented in DAO

@@ -8,6 +8,6 @@ public interface CategoryDao {
     Category getByName(String name);
     List<Category> getAll();
     int save(Category category);
-    void update(Category category);   // ✅ Added for edit
-    void delete(int id);              // ✅ Added for delete
+    void update(Category category);
+    void delete(int id);
 }

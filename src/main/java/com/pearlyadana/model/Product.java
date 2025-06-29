@@ -59,10 +59,10 @@ public class Product {
     private String name;
     private String code;
     private int categoryId;
-    private String categoryName; // ✅ Added for display purposes
+    private String categoryName;
 
     public Product() {
-        // no-arg constructor
+
     }
 
     public Product(int id, String name, String code, int categoryId) {
